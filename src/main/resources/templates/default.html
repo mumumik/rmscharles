@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
 	  xmlns:th="http://www.thymeleaf.org"	
-  	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+  	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  	  xmlns:security="http://www.springframework.org/security/tags">
 	<head>
 		<meta charset="utf-8">
 	    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -23,13 +24,23 @@
 		      <span class="mdl-layout-title">RMS Charles</span>
 		      <!-- Add spacer, to align navigation to the right -->
 		      <div class="mdl-layout-spacer"></div>
+		      <nav class="mdl-navigation">
+		        <form action="#" th:action="@{/logout}" method="POST">
+	    				<input type="hidden"
+							   name="${_csrf.parameterName}"
+							   value="${_csrf.token}" />
+	    				<button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">Logout</button>
+				</form>
+		      </nav>
 		    </div>
 		  </header>
 		  <div class="mdl-layout__drawer">
 		    <span class="mdl-layout-title">RMS Charles</span>
 		    <nav class="mdl-navigation">
 		      <a class="mdl-navigation__link" th:href="@{/books}">Books</a>
-		      <a class="mdl-navigation__link" th:href="@{/shelfs}">Shelfs</a>
+		      <security:authorize access="hasRole('ADMIN')">
+		      	<a class="mdl-navigation__link" th:href="@{/shelfs}">Shelfs</a>
+		      </security:authorize>
 		    </nav>
 		  </div>
 		  <main class="mdl-layout__content">

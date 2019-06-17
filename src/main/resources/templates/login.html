@@ -23,6 +23,13 @@
     				<h2 class="mdl-card__title-text">Login Rms Charles</h2>
     			</div>
     			
+    			<!-- /login?error=true -->
+		      	<span th:if="${#request.getParameter('error') == 'true'}" class="mdl-chip">
+		         	<span class="mdl-chip__text" th:if="${#session!= null and #session.getAttribute('SPRING_SECURITY_LAST_EXCEPTION') != null}"
+		            th:utext="${#session.getAttribute('SPRING_SECURITY_LAST_EXCEPTION').message}">
+		         	</span>
+		       	</span>
+    			
     			<div class="mdl-card__supporting-text">
 	    			<form action="#" th:action="@{/authenticate}" method="POST">
 						
@@ -41,7 +48,7 @@
 							   value="${_csrf.token}" />
 	    							
 						
-	    				<button type="submit" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">Save</button>
+	    				<button type="submit" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">Login</button>
 									
 					</form>
 	    		</div>

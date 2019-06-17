@@ -1,5 +1,6 @@
 package com.mitrais.rms.charlesrms.controller;
 
+import java.security.Principal;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +29,7 @@ public class BookController {
 	}
 	
 	@GetMapping
-	public String listBook(Model theModel) {
+	public String listBook(Model theModel, Principal principal) {
 		
 		Set<Book> theBooks = bookService.findAll();
 		

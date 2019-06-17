@@ -41,6 +41,7 @@
 						<td th:text="${tempShelf.maxCapacity}"></td>
 						<td th:text="${tempShelf.currentCapacity}"></td>
 						<td>
+							<a th:href="@{/shelfs/view/}+${tempShelf.shelfId}" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">View</a>
 							<a th:href="@{/shelfs/edit/}+${tempShelf.shelfId}" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">Update</a>
 							<a th:href="@{/shelfs/delete/}+${tempShelf.shelfId}" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent"
 									onclick="if (!(confirm('Are you sure want to delete this shelf?'))) return false">Delete</a>

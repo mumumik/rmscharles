@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" 
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{default}">
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+   	<title>Shelfs</title>
+   	<meta name="description" content="Index">
+   	<meta name="author" content="Mitrais">
+   	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+   	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+   	<link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+   	<script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+    <link rel="stylesheet" th:href="@{/css/styles.css}" />
+	
+</head>
+<div layout:fragment="page_content" id="page_content">
+	<div class="mdl-layout mdl-js-layout mdl-color--grey-100 box-center">
+    	<main class="mdl-layout__content">
+    	
+    		<a th:href="@{/shelfs/addBook/}+${shelf.shelfId}"
+				class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
+				Add Book to this shelf
+			</a>
+	    				
+	    	<table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th>ISBN</th>
+						<th>Title</th>
+						<th>Author</th>
+					</tr>
+				</thead>
+							
+				<tbody>
+					<tr th:each="tempBook : ${shelf.books}">
+						<td th:text="${tempBook.id}"></td>
+						<td th:text="${tempBook.isbn}"></td>
+						<td th:text="${tempBook.title}"></td>
+						<td th:text="${tempBook.author}"></td>
+						<td>
+							<a th:href="@{/shelfs/removeBook/}+${tempBook.id}" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent"
+												onclick="if (!(confirm('Are you sure want to delete this shelf?'))) return false">Delete</a>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+
+			<a th:href="@{/shelfs}" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">Back to Shelf List</a>
+
+	</div>
+</div>
+</html>
