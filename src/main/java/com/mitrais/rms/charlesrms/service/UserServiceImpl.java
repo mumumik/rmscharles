@@ -26,11 +26,11 @@ public class UserServiceImpl implements UserService {
 
 		Optional<User> result = userRepository.findByUsername(username);
 		
-//		User user = null;
+		User user = null;
 		
-//		if(result.isPresent()) {
-			User user = result.get();
-//		}
+		if(result.isPresent()) {
+			user = result.get();
+		}
 		
 		if (user==null) {
 			throw new UsernameNotFoundException("Invalid username or password.");
