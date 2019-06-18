@@ -19,18 +19,18 @@ import com.mitrais.rms.charlesrms.repository.UserRepository;
 public class UserServiceImpl implements UserService {
 
 	@Autowired
-	private UserRepository userRepositoryy;
+	private UserRepository userRepository;
 	
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
 		Optional<User> result = userRepository.findByUsername(username);
 		
-		User user = null;
+//		User user = null;
 		
-		if(result.isPresent()) {
-			user = result.get();
-		}
+//		if(result.isPresent()) {
+			User user = result.get();
+//		}
 		
 		if (user==null) {
 			throw new UsernameNotFoundException("Invalid username or password.");
